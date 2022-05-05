@@ -1,10 +1,13 @@
-import React, { FC, KeyboardEvent } from 'react'
-import styled from 'styled-components'
-import githubLogo from 'assets/githubLogo.svg'
-import { UserDataType } from '../App'
+import React, { FC, KeyboardEvent } from 'react';
+
+import styled from 'styled-components';
+
+import { UserDataType } from '../App';
+
+import githubLogo from 'assets/githubLogo.svg';
 
 const HeaderStyle = styled.header`
-  background-color: #0064EB;
+  background-color: #0064eb;
   height: 72px;
   display: flex;
   flex-direction: row;
@@ -25,25 +28,24 @@ const HeaderStyle = styled.header`
     outline: none;
     border-radius: 6px;
   }
-`
+`;
 
 type HeaderPropsType = {
-  setUserData: (userData: UserDataType) => void
-}
+  setUserData: (userData: UserDataType) => void;
+};
 
-export const Header: FC<HeaderPropsType> = ({setUserData}) => {
-
-  const onSearchEnterKeyPress = (e: KeyboardEvent) => {
+export const Header: FC<HeaderPropsType> = ({ setUserData }) => {
+  const onSearchEnterKeyPress = (e: KeyboardEvent): void => {
     if (e.key === 'Enter') {
-      const target = e.target as HTMLTextAreaElement
-      setUserData({username: target.value, reposCount: 0, selectedPage: 1})
+      const target = e.target as HTMLTextAreaElement;
+      setUserData({ username: target.value, reposCount: 0, selectedPage: 1 });
     }
-  }
+  };
 
   return (
     <HeaderStyle>
-      <img src={githubLogo} alt='githubLogo' />
-      <input type='text' onKeyPress={onSearchEnterKeyPress} />
+      <img src={githubLogo} alt="githubLogo" />
+      <input type="text" onKeyPress={onSearchEnterKeyPress} />
     </HeaderStyle>
-  )
-}
+  );
+};

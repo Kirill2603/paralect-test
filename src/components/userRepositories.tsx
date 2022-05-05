@@ -1,41 +1,46 @@
-import { FC } from 'react'
-import { useGetUserRepositoriesByNameQuery } from '../api/githubApi'
-import { Pagination } from './pagination'
-import { UserDataType } from '../App'
+import { FC } from "react";
+
+import { useGetUserRepositoriesByNameQuery } from '../api/githubApi';
+import { UserDataType } from '../App';
+
+import { Pagination } from './pagination';
 
 type UserRepositoriesPropsType = {
-  userData: UserDataType
-  setUserData: (userData: UserDataType) => void
-}
+  userData: UserDataType;
+  setUserData: (userData: UserDataType) => void;
+};
 
-export const UserRepositories: FC<UserRepositoriesPropsType> = ({ userData, setUserData }) => {
-
+export const UserRepositories: FC<UserRepositoriesPropsType> = ({
+  userData,
+  setUserData,
+}) => {
   const { data, isError } = useGetUserRepositoriesByNameQuery(
-    { username: userData.username, page: userData.selectedPage }, { skip: userData.username === '' },
-  )
+    { username: userData.username, page: userData.selectedPage },
+    { skip: userData.username === '' },
+  );
 
-  let userRepositoriesContent
+  let userRepositoriesContent;
+
   if (data) {
-    userRepositoriesContent =
+    userRepositoriesContent = (
       <>
         <h2>Repositories ({userData.reposCount})</h2>
         <ul>
-          {data.map(repo => <li key={repo.node_id}>
-            <a href={repo.html_url}>{repo.name}</a>
-            <p>{repo.description}</p>
-          </li>)}
+          {data.map(({ name, node_id, description, html_url }) => (
+            <li key={node_id}>
+              <a href={html_url}>{name}</a>
+              <p>{description}</p>
+            </li>
+          ))}
         </ul>
 
-        {userData.reposCount !== 0 &&
-          <Pagination
-            userData={userData}
-            setUserData={setUserData}
-          />}
+        {userData.reposCount !== 0 && (
+          <Pagination userData={userData} setUserData={setUserData} />
+        )}
       </>
+    );
   } else if (isError) {
-    userRepositoriesContent =  <div>Not Found Repos</div>
+    userRepositoriesContent = <div>Not Found Repos</div>;
   }
-  return (
-    <>{userRepositoriesContent}</>
-  )
-}
+  return <div>{userRepositoriesContent}</div>;
+};
