@@ -3,7 +3,8 @@ import React, { FC } from 'react';
 import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 
-import { UserDataType } from '../App';
+import { useAppDispatch } from "../store/store";
+import { setSelectedPage } from "../store/userSlice";
 
 const PaginationStyle = styled.div`
   display: flex;
@@ -22,30 +23,30 @@ const PaginationStyle = styled.div`
       cursor: pointer;
     }
   }
+  .active {
+    background-color: blue;
+    a {
+      color: white;
+    }
+  }
 `;
 
 type PaginationPropsType = {
-  userData: UserDataType;
-  setUserData: (userData: UserDataType) => void;
+  selectedPage : number
+  public_repos: number
 };
 
-export const Pagination: FC<PaginationPropsType> = ({
-  userData: { username, reposCount, selectedPage },
-  setUserData,
-}) => {
+export const Pagination: FC<PaginationPropsType> = ({selectedPage,public_repos}) => {
+  const dispatch = useAppDispatch();
   const handlePageClick = (e: any): void => {
-    setUserData({
-      selectedPage: e.selected + 1,
-      username,
-      reposCount,
-    });
+    dispatch(setSelectedPage(e.selected + 1))// e.selected + 1
   };
 
   return (
     <PaginationStyle>
       <p>
         {selectedPage * 4 - 3}-
-        {selectedPage * 4 > reposCount ? reposCount : selectedPage * 4} of {reposCount}{' '}
+        {selectedPage * 4 > public_repos ? public_repos : selectedPage * 4} of {public_repos}{' '}
         items
       </p>
       <ReactPaginate
@@ -54,7 +55,7 @@ export const Pagination: FC<PaginationPropsType> = ({
         forcePage={selectedPage - 1}
         breakLabel="..."
         breakClassName="break-me"
-        pageCount={Math.ceil(reposCount / 4)}
+        pageCount={Math.ceil(public_repos / 4)}
         marginPagesDisplayed={3}
         pageRangeDisplayed={1}
         onPageChange={handlePageClick}

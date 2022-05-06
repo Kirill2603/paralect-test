@@ -28,7 +28,7 @@
 		"camelcase": "off",
 		"no-shadow": "off",
 		"no-alert": "error",
-		"no-debugger": "error",
+		"no-debugger": "warn",
 		"no-plusplus": "error",
 		"no-unused-vars": "off",
 		"no-magic-numbers": "off",
@@ -58,10 +58,7 @@
 			"error"
 		],
 		"@typescript-eslint/explicit-function-return-type": [
-			"error",
-			{
-				"allowExpressions": true
-			}
+			"off"
 		],
 		"prettier/prettier": "off",
 		"react/prop-types": 0,

@@ -1,27 +1,16 @@
-import { FC, useState } from 'react';
+import { FC } from "react";
 
-import { Header, UserLogo, UserRepositories } from 'components';
+import { useAppSelector } from "./store/store";
 
-export type UserDataType = {
-  username: string;
-  reposCount: number;
-  selectedPage: number;
-};
+import { Header, UserLogo, UserRepositories } from "components";
 
 export const App: FC = () => {
-  const [userData, setUserData] = useState<UserDataType>({
-    username: '',
-    reposCount: 0,
-    selectedPage: 1,
-  });
-
-  return (
-    <>
-      <Header setUserData={setUserData} />
-      <UserLogo setUserData={setUserData} userData={userData} />
-      {userData.username !== '' && (
-        <UserRepositories userData={userData} setUserData={setUserData} />
-      )}
-    </>
-  );
-};
+  const user = useAppSelector(state => state.user)
+    return (
+      <>
+        <Header />
+        <UserLogo user={user}/>
+        <UserRepositories user={user}/>
+      </>
+    );
+  }

@@ -1,48 +1,40 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect } from "react";
 
-import styled from 'styled-components';
+import { useGetUserByNameQuery } from "../api/githubApi";
+import { useAppDispatch } from "../store/store";
+import { UserStateType } from "../store/types";
+import { setUser } from "../store/userSlice";
 
-import { useGetUserByNameQuery } from '../api/githubApi';
-import { UserDataType } from '../App';
+import { Loader } from "./loader";
 
-import followersImg from 'assets/follower.svg';
-import followerImg from 'assets/followers.svg';
-
-const UserLogoStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  > img {
-    height: 280px;
-    width: 280px;
-    border-radius: 100%;
-  }
-`;
+import followersImg from "assets/follower.svg";
+import followerImg from "assets/followers.svg";
 
 type UserLogoPropsType = {
-  userData: UserDataType;
-  setUserData: (userData: UserDataType) => void;
-};
+  user: UserStateType
+}
 
-export const UserLogo: FC<UserLogoPropsType> = ({ userData, setUserData }) => {
-  const { data, isError, isLoading } = useGetUserByNameQuery(userData.username, {
-    skip: userData.username === '',
+export const UserLogo: FC<UserLogoPropsType> = ({ user: { username } }) => {
+  const dispatch = useAppDispatch();
+  const { data, status, error} = useGetUserByNameQuery(username, {
+    skip: username === ""
   });
 
   useEffect(() => {
-    if (data) {
-      setUserData({ ...userData, reposCount: data.public_repos });
+    if (data && username && !error) {
+      dispatch(setUser({ username, selectedPage: 1, public_repos: data.public_repos }));
     }
-  }, [data]);
+  }, [username, data]);
 
-  if (isError) {
-    return <div>User not found!</div>;
+  if (status === "rejected") {
+    return <div>Error!</div>;
   }
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (status === "pending") {
+    return <Loader />;
   }
-  if (data) {
+  if (data && status === "fulfilled") {
     return (
-      <UserLogoStyle>
+      <>
         <img src={data.avatar_url} alt="User logo" />
         <h2>{data.name}</h2>
         <a href={data.html_url}>{data.login}</a>
@@ -51,14 +43,17 @@ export const UserLogo: FC<UserLogoPropsType> = ({ userData, setUserData }) => {
           <p>
             {data.followers >= 1000
               ? `${(data.followers / 1000).toFixed(1)}k`
-              : data.followers}{' '}
+              : data.followers}{" "}
             followers
           </p>
           <img src={followerImg} alt="following" />
           <p>{data.following} following</p>
         </div>
-      </UserLogoStyle>
+      </>
     );
   }
-  return <div>Pls enter username</div>;
+  return (
+    <div>Pls enter username</div>
+  );
 };
+

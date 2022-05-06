@@ -2,7 +2,8 @@ import React, { FC, KeyboardEvent } from 'react';
 
 import styled from 'styled-components';
 
-import { UserDataType } from '../App';
+import { useAppDispatch } from "../store/store";
+import { setUser } from "../store/userSlice";
 
 import githubLogo from 'assets/githubLogo.svg';
 
@@ -30,22 +31,20 @@ const HeaderStyle = styled.header`
   }
 `;
 
-type HeaderPropsType = {
-  setUserData: (userData: UserDataType) => void;
-};
+export const Header: FC = () => {
+  const dispatch = useAppDispatch()
 
-export const Header: FC<HeaderPropsType> = ({ setUserData }) => {
   const onSearchEnterKeyPress = (e: KeyboardEvent): void => {
     if (e.key === 'Enter') {
       const target = e.target as HTMLTextAreaElement;
-      setUserData({ username: target.value, reposCount: 0, selectedPage: 1 });
+      dispatch(setUser({username: target.value, selectedPage: 1, public_repos: 0}))
     }
   };
 
   return (
     <HeaderStyle>
       <img src={githubLogo} alt="githubLogo" />
-      <input type="text" onKeyPress={onSearchEnterKeyPress} />
+      <input type="search" onKeyPress={onSearchEnterKeyPress} />
     </HeaderStyle>
   );
 };

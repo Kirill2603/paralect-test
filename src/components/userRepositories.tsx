@@ -1,30 +1,25 @@
 import { FC } from "react";
 
-import { useGetUserRepositoriesByNameQuery } from '../api/githubApi';
-import { UserDataType } from '../App';
+import { useGetUserRepositoriesByNameQuery } from "../api/githubApi";
+import { UserStateType } from "../store/types";
 
-import { Pagination } from './pagination';
+import { Pagination } from "./pagination";
 
 type UserRepositoriesPropsType = {
-  userData: UserDataType;
-  setUserData: (userData: UserDataType) => void;
+  user: UserStateType
 };
 
-export const UserRepositories: FC<UserRepositoriesPropsType> = ({
-  userData,
-  setUserData,
-}) => {
-  const { data, isError } = useGetUserRepositoriesByNameQuery(
-    { username: userData.username, page: userData.selectedPage },
-    { skip: userData.username === '' },
+export const UserRepositories: FC<UserRepositoriesPropsType> = ({ user: { username, public_repos, selectedPage } }) => {
+
+  const { data, error } = useGetUserRepositoriesByNameQuery(
+    { username, page: selectedPage },
+    { skip: username === "" }
   );
 
-  let userRepositoriesContent;
-
-  if (data) {
-    userRepositoriesContent = (
+  if (data && public_repos !== 0) {
+    return (
       <>
-        <h2>Repositories ({userData.reposCount})</h2>
+        <h2>Repositories ({public_repos})</h2>
         <ul>
           {data.map(({ name, node_id, description, html_url }) => (
             <li key={node_id}>
@@ -34,13 +29,14 @@ export const UserRepositories: FC<UserRepositoriesPropsType> = ({
           ))}
         </ul>
 
-        {userData.reposCount !== 0 && (
-          <Pagination userData={userData} setUserData={setUserData} />
+        {public_repos !== 0 && (
+          <Pagination public_repos={public_repos} selectedPage={selectedPage} />
         )}
       </>
     );
-  } else if (isError) {
-    userRepositoriesContent = <div>Not Found Repos</div>;
   }
-  return <div>{userRepositoriesContent}</div>;
+  if (error) {
+    return <div>Not Found Repos</div>;
+  }
+  return <div>asd</div>;
 };
