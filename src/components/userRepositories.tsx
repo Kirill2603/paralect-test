@@ -1,17 +1,20 @@
 import { FC } from "react";
 
 import { useGetUserRepositoriesByNameQuery } from "../api/githubApi";
-import { UserStateType } from "../store/types";
 
 import { Pagination } from "./pagination";
 
+import noReposImg from 'assets/rep.svg'
+
 type UserRepositoriesPropsType = {
-  user: UserStateType
+  username: string
+  public_repos: number
+  selectedPage: number
 };
 
-export const UserRepositories: FC<UserRepositoriesPropsType> = ({ user: { username, public_repos, selectedPage } }) => {
+export const UserRepositories: FC<UserRepositoriesPropsType> = ({ username, public_repos, selectedPage }) => {
 
-  const { data, error } = useGetUserRepositoriesByNameQuery(
+  const { data } = useGetUserRepositoriesByNameQuery(
     { username, page: selectedPage },
     { skip: username === "" }
   );
@@ -35,8 +38,11 @@ export const UserRepositories: FC<UserRepositoriesPropsType> = ({ user: { userna
       </>
     );
   }
-  if (error) {
-    return <div>Not Found Repos</div>;
+  if (public_repos === 0 && username !== '') {
+    return <p><img src={noReposImg} alt="Empty repository" />Repository list is empty</p>;
   }
-  return <div>asd</div>;
+  if (username === '' || data && data.length === 0) {
+    return <div />
+  }
+  return <div />;
 };

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { useAppSelector } from "./store/store";
 
-import { Header, UserLogo, UserRepositories } from "components";
+import { Header, UserLogo } from "components";
 
 export const App: FC = () => {
   const user = useAppSelector(state => state.user)
@@ -10,7 +10,6 @@ export const App: FC = () => {
       <>
         <Header />
         <UserLogo user={user}/>
-        <UserRepositories user={user}/>
       </>
     );
   }
