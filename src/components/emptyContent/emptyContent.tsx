@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { EmptyContentStyle } from '../styles/emptyContent.styles';
+import { EmptyContentStyle } from './emptyContent.styles';
 
 type EmptyContentPropsType = {
   img: string,

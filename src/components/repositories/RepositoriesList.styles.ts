@@ -41,12 +41,12 @@ export const RepositoriesListStyles = styled.div `
   }
   @media (max-width: 700px) {
     h2 {
-      padding: 1vh 1vw;
+      padding: 2vh 2vw;
       font-size: 1.5rem;
     }
     > ul {
-      padding-left: 1vw;
-      padding-right: 1vw;
+      padding-left: 3vw;
+      padding-right: 3vw;
       justify-content: space-around;
       li {
         padding: 1vh 1vw;

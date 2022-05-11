@@ -1,12 +1,11 @@
 import { FC } from 'react';
 
-import { UserRepositoriesType } from '../api/apiTypes';
-import { RepositoriesListStyles } from '../styles/RepositoriesList.styles';
+import { RepositoriesListStyles } from './RepositoriesList.styles';
 
-import { Pagination } from './pagination';
+import { UserRepositoriesType } from 'api/apiTypes';
+import { Pagination } from 'components';
 
 type RepositoriesListPropsType = {
-
   repositories: UserRepositoriesType,
   public_repos: number,
   selectedPage: number,

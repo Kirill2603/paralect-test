@@ -1,19 +1,13 @@
 import { FC, useEffect } from 'react';
 
-import { useGetUserByNameQuery } from '../api/githubApi';
-import userIco from '../assets/icons/userIco.svg';
-import { useAppDispatch, useAppSelector } from '../store/store';
-import { setUser } from '../store/userSlice';
-import { EmptyContentStyle } from '../styles/emptyContent.styles';
-
-import { EmptyContent } from './emptyContent';
-import { Loader } from './loader';
-import { ProfileInfo } from './profileInfo';
-import { UserRepositories } from './userRepositories';
-
+import { useGetUserByNameQuery } from 'api/githubApi';
 import searchIco from 'assets/icons/searchIco.svg';
+import userIco from 'assets/icons/userIco.svg';
+import { ProfileInfo, Loader, Repositories, EmptyContent} from 'components';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { setUser } from 'store/userSlice';
 
-export const UserProfile: FC = () => {
+export const Profile: FC = () => {
   const dispatch = useAppDispatch();
   const { username, selectedPage,public_repos } = useAppSelector(state => state.user)
   const { data, status, error } = useGetUserByNameQuery(username, {
@@ -37,16 +31,14 @@ export const UserProfile: FC = () => {
 
   if (status === 'pending') {
     return (
-      <EmptyContentStyle>
         <Loader />
-      </EmptyContentStyle>
     );
   }
   if (data && status === 'fulfilled') {
     return (
       <>
         <ProfileInfo user={data} />
-        <UserRepositories  username={username} selectedPage={selectedPage} public_repos={public_repos}/>
+        <Repositories username={username} selectedPage={selectedPage} public_repos={public_repos}/>
       </>
     );
   }

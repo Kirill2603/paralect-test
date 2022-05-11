@@ -1,5 +1,8 @@
-export { Header } from 'components/header'
-export { Pagination } from 'components/pagination'
-export { UserProfile } from 'components/UserProfile'
-export { UserRepositories } from 'components/userRepositories'
-export { Loader } from 'components/loader'
+export { Header } from 'components/header/header';
+export { Pagination } from 'components/pagination/pagination';
+export { Profile } from 'components/profile/Profile';
+export { Repositories } from 'components/repositories/repositories';
+export { Loader } from 'components/loader/loader';
+export { EmptyContent } from 'components/emptyContent/emptyContent';
+export { ProfileInfo } from 'components/profile/profileInfo';
+export { RepositoriesList } from 'components/repositories/repositoriesList';

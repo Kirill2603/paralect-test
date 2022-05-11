@@ -1,8 +1,9 @@
 import React, { FC, KeyboardEvent } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../store/store';
-import { setUser } from '../store/userSlice';
-import { HeaderStyle } from '../styles/header.styles';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import { setUser } from '../../store/userSlice';
+
+import { HeaderStyle } from './header.styles';
 
 import githubIco from 'assets/icons/githubIco.svg';
 

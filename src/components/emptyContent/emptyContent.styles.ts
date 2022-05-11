@@ -8,8 +8,7 @@ export const EmptyContentStyle = styled.div`
   justify-content: center;
   margin-bottom: 90px;
   img {
-    height: 75px;
-    width: 100%;
+    background-size: cover;
   }
   p {
     width: 210px;

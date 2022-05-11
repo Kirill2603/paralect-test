@@ -1,14 +1,14 @@
 import { FC } from 'react';
 
-import { MainContainer } from './styles/mainContainer.style';
+import { MainContainer } from './externalStyles/mainContainer.style';
 
-import { Header, UserProfile } from 'components';
+import { Header, Profile } from 'components';
 
 export const App: FC = () => (
     <>
       <Header />
       <MainContainer>
-        <UserProfile />
+        <Profile />
       </MainContainer>
     </>
   );

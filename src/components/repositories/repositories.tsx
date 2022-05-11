@@ -1,21 +1,21 @@
 import { FC } from 'react';
 
-import { EmptyContentStyle } from '../styles/emptyContent.styles';
-
-import { EmptyContent } from './emptyContent';
-import { Loader } from './loader';
-import { RepositoriesList } from './repositoriesList';
-
 import { useGetUserRepositoriesByNameQuery } from 'api/githubApi';
 import noReposImg from 'assets/icons/emptyRepositoryIco.svg';
+import { Loader, RepositoriesList, EmptyContent } from 'components';
 
-type UserRepositoriesPropsType = {
-  username: string
-  selectedPage: number
-  public_repos: number
+type RepositoriesPropsType = {
+  username: string,
+  selectedPage: number,
+  public_repos: number,
 };
 
-export const UserRepositories: FC<UserRepositoriesPropsType> = ({ username, public_repos, selectedPage }) => {
+export const Repositories: FC<RepositoriesPropsType> = (
+  {
+    username,
+    public_repos,
+    selectedPage,
+  }) => {
   const { data, error, status } = useGetUserRepositoriesByNameQuery(
     { username, page: selectedPage },
     { skip: username === '' },
@@ -23,9 +23,7 @@ export const UserRepositories: FC<UserRepositoriesPropsType> = ({ username, publ
 
   if (status === 'pending' && data && data.length !== 0) {
     return (
-      <EmptyContentStyle>
         <Loader />
-      </EmptyContentStyle>
     );
   }
   if (error) {

@@ -2,19 +2,20 @@ import React, { FC } from 'react';
 
 import ReactPaginate from 'react-paginate';
 
-import { useAppDispatch } from "../store/store";
-import { setSelectedPage } from "../store/userSlice";
-import { PaginationStyle } from "../styles/pagination.styles";
+import { PaginationStyle } from "./pagination.styles";
+
+import { useAppDispatch } from "store/store";
+import { setSelectedPage } from "store/userSlice";
 
 type PaginationPropsType = {
-  selectedPage : number
-  public_repos: number
+  selectedPage : number,
+  public_repos: number,
 };
 
 export const Pagination: FC<PaginationPropsType> = ({selectedPage,public_repos}) => {
   const dispatch = useAppDispatch();
   const handlePageClick = (e: any): void => {
-    dispatch(setSelectedPage(e.selected + 1))// e.selected + 1
+    dispatch(setSelectedPage(e.selected + 1))
   };
 
   return (
