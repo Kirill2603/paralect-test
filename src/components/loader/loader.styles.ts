@@ -1,8 +1,6 @@
-import { FC } from "react";
-
 import styled from "styled-components";
 
-const LoaderStyles = styled.div`
+export const LoaderStyles = styled.div`
   border: 16px solid white;
   border-radius: 50%;
   border-top: 16px solid #0064eb;
@@ -17,7 +15,3 @@ const LoaderStyles = styled.div`
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 `
-
-export const Loader: FC = () => (
-    <LoaderStyles />
-  );

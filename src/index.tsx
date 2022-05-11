@@ -5,15 +5,18 @@ import { Provider } from "react-redux";
 
 import { App } from './App'
 import { store } from "./store/store";
-import './index.css'
+import { CssResetStyles } from './styles/cssReset.styles';
+import { GlobalStyles } from './styles/globalStyles.styles';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 )
-root.render(
 
+root.render(
     <React.StrictMode>
       <Provider store={store}>
+        <GlobalStyles />
+        <CssResetStyles />
         <App />
       </Provider>
     </React.StrictMode>,

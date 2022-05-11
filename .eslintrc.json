@@ -34,6 +34,7 @@
 		"no-magic-numbers": "off",
 		"default-param-last": "off",
 		"no-use-before-define": "off",
+		"no-else-return": "off",
 		"no-multiple-empty-lines": [
 			"error",
 			{
@@ -128,8 +129,8 @@
 				"extensions": [
 					".js",
 					".jsx",
-					".ts",
-					".tsx"
+					".tsx",
+					".ts"
 				]
 			}
 		}
