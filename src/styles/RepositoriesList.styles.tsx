@@ -25,7 +25,7 @@ export const RepositoriesListStyles = styled.div `
 
       a {
         color: #0064EB;
-        font-size: 24px;
+        font-size: 1.5rem;
       }
 
       a:visited {
@@ -34,7 +34,22 @@ export const RepositoriesListStyles = styled.div `
 
       p {
         padding-top: 3vh;
-        font-size: 16px;
+        font-size: 1rem;
+        word-wrap: break-word;
+      }
+    }
+  }
+  @media (max-width: 700px) {
+    h2 {
+      padding: 1vh 1vw;
+      font-size: 1.5rem;
+    }
+    > ul {
+      padding-left: 1vw;
+      padding-right: 1vw;
+      justify-content: space-around;
+      li {
+        padding: 1vh 1vw;
       }
     }
   }

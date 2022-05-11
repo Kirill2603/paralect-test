@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-import { UserRepositoriesType } from '../../../api/apiTypes';
-import { Pagination } from '../../pagination/pagination';
+import { UserRepositoriesType } from '../api/apiTypes';
+import { RepositoriesListStyles } from '../styles/RepositoriesList.styles';
 
-import { RepositoriesListStyles } from './RepositoriesList.styles';
+import { Pagination } from './pagination';
 
 type RepositoriesListPropsType = {
 
@@ -20,7 +20,7 @@ export const RepositoriesList: FC<RepositoriesListPropsType> = (
     <ul>
       {repositories.map(({ name, node_id, description, html_url }) => (
         <li key={node_id}>
-          <a href={html_url} target="_blank" rel="noopener noreferrer">{name}</a>
+          <a href={html_url} target='_blank' rel='noopener noreferrer'>{name}</a>
           <p>{description}</p>
         </li>
       ))}

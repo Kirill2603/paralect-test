@@ -6,7 +6,7 @@ const initialState: UserStateType = {
   username: "",
   selectedPage: 1,
   public_repos: 0
-};
+}
 
 export const userSlice = createSlice({
 

@@ -32,7 +32,8 @@ export const PaginationStyle = styled.div`
       background-repeat: no-repeat;
       background-size: 8px;
       background-position-y: center;
-      margin: 0 0 0 1vw;
+      background-position-x: center;
+      margin: 0 0 0 2vw;
 
       a {
         opacity: 0;
@@ -44,7 +45,8 @@ export const PaginationStyle = styled.div`
       background-repeat: no-repeat;
       background-size: 8px;
       background-position-y: center;
-      margin: 0;
+      background-position-x: center;
+      margin: 0 2vw 0 0;
 
       a {
         opacity: 0;
@@ -66,5 +68,11 @@ export const PaginationStyle = styled.div`
     font-size: 14px;
     line-height: 25px;
     color: #808080;
+  }
+
+  @media (max-width: 880px) {
+    flex-direction: column;
+    justify-content: center;
+    padding: 1vh 1vw;
   }
 `;

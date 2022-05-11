@@ -1,27 +1,14 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import styled from 'styled-components';
+import { MainContainer } from './styles/mainContainer.style';
 
-import { useAppSelector } from "./store/store";
+import { Header, UserProfile } from 'components';
 
-import { Header, UserProfile, UserRepositories } from "components";
-
-const AppContainer = styled.main`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex: 1 1 auto;
-`
-
-export const App: FC = () => {
-  const user = useAppSelector(state => state.user);
-  return (
+export const App: FC = () => (
     <>
       <Header />
-      <AppContainer>
-      <UserProfile user={user} />
-      {user.username !== '' && <UserRepositories user={user} />}
-      </AppContainer>
+      <MainContainer>
+        <UserProfile />
+      </MainContainer>
     </>
   );
-};

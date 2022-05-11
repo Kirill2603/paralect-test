@@ -2,10 +2,9 @@ import React, { FC } from 'react';
 
 import ReactPaginate from 'react-paginate';
 
-import { useAppDispatch } from "../../store/store";
-import { setSelectedPage } from "../../store/userSlice";
-
-import { PaginationStyle } from "./pagination.styles";
+import { useAppDispatch } from "../store/store";
+import { setSelectedPage } from "../store/userSlice";
+import { PaginationStyle } from "../styles/pagination.styles";
 
 type PaginationPropsType = {
   selectedPage : number

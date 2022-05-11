@@ -33,4 +33,11 @@ export const HeaderStyle = styled.header`
   input[type="search"]::-webkit-search-results-decoration {
     -webkit-appearance:none;
   }
+  @media (max-width: 700px) {
+    height: 52px;
+    min-height: 52px;
+    input {
+      width: 55vw;
+    }
+  }
 `;
