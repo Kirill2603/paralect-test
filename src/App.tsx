@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
-import { MainContainer } from './externalStyles/mainContainer.style';
-
 import { Header, Profile } from 'components';
+import { MainContainer } from 'externalStyles';
 
 export const App: FC = () => (
     <>

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { RepositoriesListStyles } from './RepositoriesList.styles';
 
@@ -11,7 +11,7 @@ type RepositoriesListPropsType = {
   selectedPage: number,
 }
 
-export const RepositoriesList: FC<RepositoriesListPropsType> = (
+export const RepositoriesList: FC<RepositoriesListPropsType> = memo((
   { repositories, public_repos, selectedPage },
 ) => (
   <RepositoriesListStyles>
@@ -29,4 +29,4 @@ export const RepositoriesList: FC<RepositoriesListPropsType> = (
       <Pagination public_repos={public_repos} selectedPage={selectedPage} />
     )}
   </RepositoriesListStyles>
-);
+));

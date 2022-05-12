@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from 'react';
 
 import { EmptyContentStyle } from './emptyContent.styles';
 
@@ -7,9 +7,9 @@ type EmptyContentPropsType = {
   description: string
 }
 
-export const EmptyContent:FC<EmptyContentPropsType> = ({img,description}) => (
+export const EmptyContent:FC<EmptyContentPropsType> = memo(({img,description}) => (
   <EmptyContentStyle>
     <img src={img} alt={description} />
     <p>{description}</p>
   </EmptyContentStyle>
-)
+))

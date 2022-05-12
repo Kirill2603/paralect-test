@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { useGetUserRepositoriesByNameQuery } from 'api/githubApi';
 import noReposImg from 'assets/icons/emptyRepositoryIco.svg';
@@ -10,7 +10,7 @@ type RepositoriesPropsType = {
   public_repos: number,
 };
 
-export const Repositories: FC<RepositoriesPropsType> = (
+export const Repositories: FC<RepositoriesPropsType> = memo((
   {
     username,
     public_repos,
@@ -44,4 +44,4 @@ export const Repositories: FC<RepositoriesPropsType> = (
     );
   }
   return null;
-};
+});

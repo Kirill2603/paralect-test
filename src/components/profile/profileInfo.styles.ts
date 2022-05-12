@@ -35,7 +35,7 @@ export const ProfileInfoStyles = styled.div`
       padding-left: 8px;
       font-size: 1rem;
     }
-    div {
+    span {
       display: flex;
       align-items: center;
     }

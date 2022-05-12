@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import nexIco from 'assets/icons/nextIco.svg';
 import prevIco from 'assets/icons/prevIco.svg';
 
-export const PaginationStyle = styled.div`
+export const PaginationStyle = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

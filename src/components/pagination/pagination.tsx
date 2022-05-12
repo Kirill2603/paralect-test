@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import ReactPaginate from 'react-paginate';
 
@@ -12,16 +12,19 @@ type PaginationPropsType = {
   public_repos: number,
 };
 
-export const Pagination: FC<PaginationPropsType> = ({selectedPage,public_repos}) => {
+export const Pagination: FC<PaginationPropsType> = memo(({selectedPage,public_repos}) => {
   const dispatch = useAppDispatch();
-  const handlePageClick = (e: any): void => {
-    dispatch(setSelectedPage(e.selected + 1))
+  const handlePageClick = (event: any ): void => {
+    dispatch(setSelectedPage(event.selected + 1))
   };
 
   return (
     <PaginationStyle>
       <p>
-        {selectedPage * 4 - 3}-{selectedPage * 4 > public_repos ? public_repos : selectedPage * 4} of {public_repos}{' '}
+        {selectedPage * 4 - 3}
+        -
+        {selectedPage * 4 > public_repos ? public_repos : selectedPage * 4}
+        of {public_repos}{' '}
         items
       </p>
       <ReactPaginate
@@ -39,4 +42,4 @@ export const Pagination: FC<PaginationPropsType> = ({selectedPage,public_repos})
       />
     </PaginationStyle>
   );
-};
+});

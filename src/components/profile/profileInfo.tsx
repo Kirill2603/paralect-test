@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { ProfileInfoStyles } from './profileInfo.styles';
 
@@ -10,7 +10,7 @@ type ProfileInfoPropsType = {
   user: UserType,
 }
 
-export const ProfileInfo: FC<ProfileInfoPropsType> = (
+export const ProfileInfo: FC<ProfileInfoPropsType> = memo((
   {
     user: {
       followers,
@@ -32,18 +32,18 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = (
       <div>
         <h2>{name}</h2>
         <a href={html_url} target='_blank' rel='noopener noreferrer'>{login}</a>
-        <div className='follows'>
-          <div>
+        <span className='follows'>
+          <span>
             <img src={followersIco} alt='followers' />
             <p>{formattedFollows} followers</p>
-          </div>
-          <div>
+          </span>
+          <span>
             <img src={followerIco} alt='following' />
             <p> {following} following</p>
-          </div>
-        </div>
+          </span>
+        </span>
       </div>
     </ProfileInfoStyles>
   );
-};
+});
 

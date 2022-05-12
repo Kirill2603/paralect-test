@@ -21,14 +21,13 @@ export const Profile: FC = () => {
     if (error) {
       dispatch(setUser({ username: '', selectedPage: 1, public_repos: 0 }));
     }
-  }, [username, data]);
+  }, [username, data, dispatch]);
 
   if (status === 'rejected') {
     return (
       <EmptyContent img={userIco} description='User not found' />
     );
   }
-
   if (status === 'pending') {
     return (
         <Loader />

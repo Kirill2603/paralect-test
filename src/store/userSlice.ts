@@ -15,9 +15,6 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<UserStateType>) => action.payload,
     setSelectedPage: (state, action: PayloadAction<number>) => ({ ...state, selectedPage: action.payload })
-    // setUserPublicRepos: (state, action: PayloadAction<number>) => {
-    // 	state.public_repos = action.payload
-    // }
   }
 });
 
